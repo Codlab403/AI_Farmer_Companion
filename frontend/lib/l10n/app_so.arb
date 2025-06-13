@@ -1,0 +1,9 @@
+{
+  "appTitle": "Kaaliyaha Beeralayda AI",
+  "login": "Gali",
+  "email": "Email",
+  "password": "Furaha",
+  "invalidEmail": "Email aan sax ahayn",
+  "minChars": "Ugu yaraan 6 xaraf",
+  "loginFailed": "Gelitaanka wuu fashilmay"
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "region": "Addis Ababa",
+    "crop_type": "maize",
+    "date": "2025-06-10",
+    "price_per_kg": 18.5,
+    "currency": "ETB"
+  },
+  {
+    "region": "Oromia",
+    "crop_type": "teff",
+    "date": "2025-06-09",
+    "price_per_kg": 52.0,
+    "currency": "ETB"
+  },
+  {
+    "region": "Amhara",
+    "crop_type": "wheat",
+    "date": "2025-06-10",
+    "price_per_kg": 24.0,
+    "currency": "ETB"
+  },
+  {
+    "region": "Addis Ababa",
+    "crop_type": "teff",
+    "date": "2025-06-10",
+    "price_per_kg": 55.5,
+    "currency": "ETB"
+  },
+  {
+    "region": "Oromia",
+    "crop_type": "maize",
+    "date": "2025-06-10",
+    "price_per_kg": 17.0,
+    "currency": "ETB"
+  }
+]

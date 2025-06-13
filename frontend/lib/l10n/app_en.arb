@@ -1,0 +1,9 @@
+{
+  "appTitle": "AI Farmer's Companion",
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "invalidEmail": "Invalid email",
+  "minChars": "Minimum 6 characters",
+  "loginFailed": "Login failed"
+}

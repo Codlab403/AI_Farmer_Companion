@@ -1,0 +1,21 @@
+# Core FastAPI and Server
+fastapi>=0.100.0
+uvicorn[standard]>=0.20.0
+python-multipart>=0.0.6
+pydantic>=2.0
+
+# Database, Auth, and Security
+supabase>=1.0.0
+python-jose[cryptography]>=3.3.0
+
+# Environment and Image Processing
+python-dotenv>=1.0.0
+Pillow>=9.5.0
+
+# Generative AI
+google-generativeai>=0.4.0
+
+# Machine Learning / Model Inference
+# Using tflite-runtime as a lightweight alternative to full tensorflow
+tflite-runtime>=2.14.0
+

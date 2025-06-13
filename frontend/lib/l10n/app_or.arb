@@ -1,0 +1,9 @@
+{
+  "appTitle": "Gargaarsa Qonnaan Bultoota AI",
+  "login": "Seeni",
+  "email": "Imeelii",
+  "password": "Jecha darbii",
+  "invalidEmail": "Imeelii sirrii miti",
+  "minChars": "Char akka xiqqaate 6",
+  "loginFailed": "Seensa hin milkoofne"
+}

@@ -1,0 +1,9 @@
+{
+  "appTitle": "የ አይ ገበሬ ባህሪ",
+  "login": "ግባ",
+  "email": "ኢሜይል",
+  "password": "የይለፍ ቃል",
+  "invalidEmail": "የማይቀበል ኢሜይል",
+  "minChars": "ቢያንስ 6 ቁምፊዎች",
+  "loginFailed": "ግባት አልተሳካም"
+}
