@@ -16,7 +16,7 @@
 
 ## 🧠 CORE AI CAPABILITIES TO INTEGRATE
 
-### 1. 🤖 **Multilingual AI Chat Assistant (Gemini or LLaMA 3.2)**
+### 1. 🤖 **Multilingual AI Chat Assistant (Gemini or Ollama(LLaMA 3.2))**
 
 **Purpose**: Provide accurate, conversational answers to natural-language questions in **Amharic, Oromo, Somali, Tigrigna, English**.
 
