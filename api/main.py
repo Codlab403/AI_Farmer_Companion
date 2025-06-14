@@ -35,12 +35,13 @@ async def health_check():
     return {"status": "API is healthy"}
 
 # Import routers from the routes module
-from .routes import chat, data
+from .routes import chat, data, weather
 
 # Include routers
 # chat.router already has prefix "/chat", so mounting at "/api/v1" yields paths like /api/v1/chat/ask
 app.include_router(chat.router, prefix="/api/v1", tags=["Chat"])
 app.include_router(data.router, prefix="/api/v1/data", tags=["Application Data"])
+app.include_router(weather.router, prefix="/api/v1", tags=["Weather"])
 
 # We will add other routers for different features later.
 # For example:

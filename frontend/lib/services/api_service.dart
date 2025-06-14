@@ -96,4 +96,19 @@ class ApiService {
       throw Exception('Failed to connect to the server. Please check your network connection.');
     }
   }
+
+  /// Fetch 24-hour weather forecast from backend.
+  static Future<Map<String, dynamic>> fetchWeather({double lat = 9.145, double lon = 40.48967}) async {
+    final url = Uri.parse('$_baseUrl/api/v1/weather?lat=$lat&lon=$lon');
+    try {
+      final response = await http.get(url).timeout(const Duration(seconds: 15));
+      if (response.statusCode == 200) {
+        return json.decode(response.body);
+      } else {
+        throw Exception('Failed to load weather (Status code: ${response.statusCode})');
+      }
+    } catch (e) {
+      throw Exception('Failed to connect to the server. Please check your network connection.');
+    }
+  }
 }

@@ -38,7 +38,7 @@ dependencies:
   # onnxruntime_flutter: # For ONNX models
 
   # Voice & Audio
-  # speech_to_text: ^6.5.1 # Device STT capabilities
+  speech_to_text: ^6.6.0 # Device STT capabilities
   # flutter_tts: ^3.8.3 # Device TTS capabilities
   # audioplayers: ^5.2.1 # For playing audio feedback/TTS output
 

@@ -19,10 +19,18 @@ class AuthService {
     // Listen for auth state changes to refresh token storage
     supabase.auth.onAuthStateChange.listen((data) async {
       final session = data.session;
-      if (session?.accessToken != null) {
-        await saveToken(session!.accessToken);
-      } else if (data.event == AuthChangeEvent.signedOut) {
-        await logout();
+      switch (data.event) {
+        case AuthChangeEvent.signedIn:
+        case AuthChangeEvent.tokenRefreshed:
+          if (session?.accessToken != null) {
+            await saveToken(session!.accessToken);
+          }
+          break;
+        case AuthChangeEvent.signedOut:
+          await logout();
+          break;
+        default:
+          break;
       }
     });
   }
