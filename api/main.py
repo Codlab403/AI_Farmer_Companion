@@ -48,6 +48,16 @@ app.include_router(weather.router, prefix="/api/v1", tags=["Weather"])
 # from .routes import some_other_feature
 # app.include_router(some_other_feature.router)
 
+from .core.security import get_current_user_id
+from fastapi import Depends
+
+@app.get("/protected", tags=["General"])
+async def protected_route(user_id: str = Depends(get_current_user_id)):
+    """
+    Example protected route. Requires a valid Supabase Auth JWT in the Authorization header.
+    """
+    return {"user_id": user_id, "message": "You are authenticated!"}
+
 if __name__ == "__main__":
     # This is for local development running the Uvicorn server directly.
     # For production, you'd typically use a process manager like Gunicorn with Uvicorn workers.
