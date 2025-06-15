@@ -28,7 +28,8 @@ class _CropInfoScreenState extends State<CropInfoScreen> {
             return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+            // Display a more user-friendly error message
+            return const Center(child: Text('Failed to load crop information. Please try again later.'));
           }
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(child: Text('No crop information available.'));
@@ -68,5 +69,3 @@ class _CropInfoScreenState extends State<CropInfoScreen> {
     );
   }
 }
-
-

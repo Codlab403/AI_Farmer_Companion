@@ -31,7 +31,8 @@ class _MarketPricesScreenState extends State<MarketPricesScreen> {
             return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+            // Display a more user-friendly error message
+            return const Center(child: Text('Failed to load market prices. Please try again later.'));
           }
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(child: Text('No market data available.'));
@@ -57,4 +58,3 @@ class _MarketPricesScreenState extends State<MarketPricesScreen> {
     );
   }
 }
-

@@ -5,6 +5,9 @@ from fastapi import APIRouter, HTTPException, File, UploadFile
 import google.generativeai as genai
 from PIL import Image
 
+# Import cached market prices data and loading function
+from .market_prices import _market_prices_cache, load_market_prices_data
+
 router = APIRouter()
 
 # Configure the Gemini client at the module level
@@ -19,27 +22,69 @@ except Exception as e:
 
 @router.get("/market-prices")
 async def get_market_prices():
-    """Returns mock market price data."""
-    return [
-        {'crop': 'Wheat', 'price': '1,500 ETB/quintal'},
-        {'crop': 'Teff', 'price': '7,000 ETB/quintal'},
-        {'crop': 'Maize', 'price': '1,200 ETB/quintal'},
-        {'crop': 'Coffee', 'price': '9,500 ETB/quintal'},
-    ]
+    """Returns market price data from cache."""
+    # Use the cached data loaded by the market_prices module
+    market_prices = _market_prices_cache
+
+    if not market_prices:
+         # Attempt to reload data if cache is empty (e.g., on first request after startup error)
+         load_market_prices_data()
+         market_prices = _market_prices_cache
+         if not market_prices:
+              raise HTTPException(status_code=500, detail="Market prices data not available.")
+
+    return market_prices
+
+# Placeholder for caching crop info data (similar to market prices)
+_crop_info_cache = None
+
+def load_crop_info_data():
+    """Loads crop information data from a JSON file."""
+    global _crop_info_cache
+    data_path = os.path.join(os.path.dirname(__file__), "..", "data", "crop_info.json") # Assuming crop_info.json exists
+    try:
+        with open(data_path, "r", encoding="utf-8") as f:
+            _crop_info_cache = json.load(f)
+        print("DEBUG - Crop info data loaded and cached.")
+    except FileNotFoundError:
+        print(f"ERROR - Crop info data file not found at {data_path}")
+        _crop_info_cache = [] # Initialize as empty list on error
+    except json.JSONDecodeError:
+        print(f"ERROR - Error decoding crop info data from {data_path}")
+        _crop_info_cache = [] # Initialize as empty list on error
+    except Exception as e:
+        print(f"ERROR - An unexpected error occurred loading crop info: {e}")
+        _crop_info_cache = [] # Initialize as empty list on error
+
+# Load data when the module is imported
+load_crop_info_data()
 
 @router.get("/crop-info")
 async def get_crop_info():
-    """Returns mock crop information."""
-    return [
-        {'name': 'Teff', 'description': 'A staple grain in Ethiopia, resistant to many pests.'},
-        {'name': 'Maize', 'description': 'A major food crop, grown in various altitudes.'},
-        {'name': 'Coffee', 'description': 'Ethiopia\'s most famous export, known for its rich flavor.'},
-        {'name': 'Wheat', 'description': 'Widely cultivated for bread and other baked goods.'},
-    ]
+    """Returns crop information from cache (placeholder for real data)."""
+    # Use the cached data
+    crop_info = _crop_info_cache
+
+    if not crop_info:
+         # Attempt to reload data if cache is empty
+         load_crop_info_data()
+         crop_info = _crop_info_cache
+         if not crop_info:
+              raise HTTPException(status_code=500, detail="Crop information data not available.")
+
+    return crop_info
 
 @router.post("/pest-diagnose")
 async def diagnose_pest(file: UploadFile = File(...)):
     """Receives an image, sends it to Gemini for diagnosis, and returns the result."""
+    # TODO: Improve Pest Diagnosis Backend
+    # 1. Implement more robust image handling (validation, resizing, format conversion).
+    # 2. Refine the prompt for the Gemini model for better diagnosis accuracy and format consistency.
+    # 3. Implement more robust parsing of the Gemini response to handle variations in output.
+    # 4. Consider integrating with a dedicated, potentially fine-tuned, image classification model instead of or in addition to Gemini.
+    # 5. Implement logic to store diagnosis requests and results in the database.
+    # 6. Add error handling for cases where the uploaded file is not an image.
+
     if not genai.API_KEY:
         raise HTTPException(status_code=500, detail="GEMINI_API_KEY is not configured on the server.")
 

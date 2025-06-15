@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'faq_service.dart'; // Import FaqService
 
 class AuthService {
   static const _storage = FlutterSecureStorage();
@@ -10,6 +11,10 @@ class AuthService {
   /// Must be called once at app startup after Supabase.initialize
   static Future<void> init() async {
     final supabase = Supabase.instance.client;
+
+    // Load FAQ data at startup
+    await FaqService.loadFaqData();
+
     // Save current session token if present
     final token = supabase.auth.currentSession?.accessToken;
     if (token != null) {

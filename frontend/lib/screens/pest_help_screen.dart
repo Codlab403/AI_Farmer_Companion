@@ -1,9 +1,18 @@
 import 'dart:io';
+import 'dart:io'; // Keep dart:io import
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ai_farmers_companion/services/api_service.dart';
 
+// TODO: Improve Pest Diagnosis Feature
+// 1. Enhance UI for displaying diagnosis results (e.g., show image with highlighted areas).
+// 2. Handle different image formats and sizes more robustly.
+// 3. Provide more detailed information in the diagnosis result display.
+// 4. Consider integrating with a different or fine-tuned model if Gemini's accuracy is insufficient.
+// 5. Implement offline diagnosis capability if a local model is available.
+
 class PestHelpScreen extends StatefulWidget {
+>>>>>>> REPLACE
   const PestHelpScreen({super.key});
 
   @override
@@ -42,7 +51,8 @@ class _PestHelpScreenState extends State<PestHelpScreen> {
         });
       } catch (e) {
         setState(() {
-          _error = 'Failed to connect to the server. Please check your connection and try again.';
+          // Provide a more generic error message for unexpected errors
+          _error = 'An error occurred during diagnosis. Please try again.';
           _diagnosisResult = null;
         });
       } finally {
@@ -131,4 +141,3 @@ class _PestHelpScreenState extends State<PestHelpScreen> {
     );
   }
 }
-
