@@ -86,13 +86,33 @@ async def ask_assistant(query: UserQuery, current_user_id: str = Depends(get_cur
             print(f"--- FAQ search error: {e} ---")
             faq_context = "\n\n(Could not retrieve FAQ context due to an error.)\n\n" # Indicate error to AI
 
-        # 3. Construct a prompt for the Gemini model
+        # 3. Fetch farm profile data for personalization
+        farm_profile_context = ""
+        try:
+            response = supabase.table('farm_profiles').select('*').eq('user_id', current_user_id).single().execute()
+            profile_data = response.data
+            if profile_data:
+                farm_profile_context = "\n\n--- Farm Profile ---\n"
+                farm_profile_context += f"Region: {profile_data.get('region', 'N/A')}\n"
+                farm_profile_context += f"Crop Focus: {profile_data.get('crop_focus', 'N/A')}\n"
+                farm_profile_context += f"Land Size: {profile_data.get('land_size', 'N/A')}\n"
+                farm_profile_context += "--------------------\n\n"
+                print("--- Fetched farm profile ---")
+            else:
+                print("--- No farm profile found ---")
+        except Exception as e:
+            print(f"--- Farm profile fetch error: {e} ---")
+            farm_profile_context = "\n\n(Could not retrieve farm profile due to an error.)\n\n" # Indicate error to AI
+
+
+        # 4. Construct a prompt for the Gemini model
         prompt = (
             f"You are an expert agricultural assistant for Ethiopian farmers. "
             f"Your goal is to provide accurate, helpful, and concise advice. "
             f"Please respond in {query.language_code}, as that is the user's preferred language.\n\n"
             f"{chat_history_str}" # Include conversation history
             f"{faq_context}"     # Include FAQ context
+            f"{farm_profile_context}" # Include farm profile context
             f"User's current question: {query.text_input}"
         )
 

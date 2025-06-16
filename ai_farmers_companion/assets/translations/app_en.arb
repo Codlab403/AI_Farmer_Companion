@@ -1,0 +1,42 @@
+{
+  "@@locale": "en",
+  "appTitle": "AI Farmer's Companion",
+  "homeScreenTitle": "AI Farmer's Companion",
+  "askAiButtonLabel": "Ask AI",
+  "cropGuideButtonLabel": "Crop Guide",
+  "pestDiseaseScannerButtonLabel": "Pest & Disease Scanner",
+  "marketIntelligenceButtonLabel": "Market Intelligence",
+  "weatherAlertsButtonLabel": "Weather Alerts",
+  "learningLibraryButtonLabel": "Learning Library",
+  "communityGroupsButtonLabel": "Community & Groups",
+  "settingsButtonLabel": "Settings",
+  "askAiScreenTitle": "Ask AI",
+  "askAiInputHint": "Type your question...",
+  "voiceButtonTooltip": "Hold to Record",
+  "cropGuideScreenTitle": "Crop Guide",
+  "calendarViewPlaceholder": "Calendar View Placeholder",
+  "regionSpecificTipsTitle": "Region-Specific Tips:",
+  "placeholderTip1": "Tip 1: Placeholder tip for the current region.",
+  "placeholderTip2": "Tip 2: Another placeholder tip.",
+  "pestPhotoUploadScreenTitle": "Pest & Disease Scanner",
+  "selectImageButtonLabel": "Select Image",
+  "submitForAnalysisButtonLabel": "Submit for Analysis",
+  "settingsScreenTitle": "Settings",
+  "languageSettingTitle": "Language",
+  "currentLanguagePlaceholder": "English",
+  "lastSyncSettingTitle": "Last Sync",
+  "neverSyncPlaceholder": "Never",
+  "helpGuideSettingTitle": "Help Guide",
+  "offlineSyncStatus": "Offline Mode - Last synced: {lastSyncTime}",
+  "@offlineSyncStatus": {
+    "placeholders": {
+      "lastSyncTime": {
+        "type": "String"
+      }
+    }
+  },
+  "languageEnglish": "English",
+  "languageAmharic": "Amharic",
+  "languageAfaanOromo": "Afaan Oromo",
+  "languageSomali": "Somali"
+}

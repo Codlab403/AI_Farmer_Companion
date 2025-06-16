@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:io'; // Keep dart:io import
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,12 +11,6 @@ import 'package:ai_farmers_companion/services/api_service.dart';
 // 5. Implement offline diagnosis capability if a local model is available.
 
 class PestHelpScreen extends StatefulWidget {
->>>>>>> REPLACE
-  const PestHelpScreen({super.key});
-
-  @override
-  State<PestHelpScreen> createState() => _PestHelpScreenState();
-}
 
 class _PestHelpScreenState extends State<PestHelpScreen> {
   final ImagePicker _picker = ImagePicker();
@@ -116,18 +109,33 @@ class _PestHelpScreenState extends State<PestHelpScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Diagnosis: ${_diagnosisResult!['diagnosis']}',
-                            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            'Diagnosis:',
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 4),
                           Text(
-                            'Confidence: ${(_diagnosisResult!['confidence'] * 100).toStringAsFixed(2)}%',
-                            style: const TextStyle(fontSize: 16),
+                            _diagnosisResult!['diagnosis'],
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 12),
                           Text(
-                            'Recommendation: ${_diagnosisResult!['recommendation']}',
-                            style: const TextStyle(fontSize: 16),
+                            'Confidence:',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            '${(_diagnosisResult!['confidence'] * 100).toStringAsFixed(2)}%',
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            'Recommendation:',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            _diagnosisResult!['recommendation'],
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                         ],
                       ),
