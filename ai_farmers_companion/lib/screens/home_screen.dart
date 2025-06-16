@@ -15,10 +15,14 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Text(l10n.homeScreenTitle), // Use localized title
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: GridView.count(
-          crossAxisCount: 2, // Two tiles per row
+      body: Column( // Use a Column to place the banner above the grid
+        children: [
+          const SyncBanner(), // Add the SyncBanner widget
+          Expanded( // Wrap the GridView in Expanded to take remaining space
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GridView.count(
+                crossAxisCount: 2, // Two tiles per row
           crossAxisSpacing: 16.0,
           mainAxisSpacing: 16.0,
           children: [
@@ -47,28 +51,28 @@ class HomeScreen extends ConsumerWidget {
               icon: Icons.storefront_outlined,
               label: l10n.marketIntelligenceButtonLabel, // Use localized label
               onTap: () {
-                // TODO: Navigate to Market Intelligence screen
+                Navigator.pushNamed(context, '/market_intelligence');
               },
             ),
             TileButton(
               icon: Icons.cloud_outlined,
               label: l10n.weatherAlertsButtonLabel, // Use localized label
               onTap: () {
-                // TODO: Navigate to Weather Alerts screen
+                Navigator.pushNamed(context, '/weather_alerts');
               },
             ),
             TileButton(
               icon: Icons.library_books_outlined,
               label: l10n.learningLibraryButtonLabel, // Use localized label
               onTap: () {
-                // TODO: Navigate to Learning Library screen
+                Navigator.pushNamed(context, '/learning_library');
               },
             ),
             TileButton(
               icon: Icons.group_outlined,
               label: l10n.communityGroupsButtonLabel, // Use localized label
               onTap: () {
-                // TODO: Navigate to Community & Groups screen
+                Navigator.pushNamed(context, '/community_groups');
               },
             ),
             TileButton(

@@ -20,6 +20,8 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLocale = ref.watch(localeProvider); // Watch the localeProvider
+    // Watch the synchronization service to keep it alive and active
+    ref.watch(synchronizationServiceProvider);
 
     return MaterialApp(
       title: AppLocalizations.of(context)!.appTitle, // Use localized app title
@@ -59,9 +61,13 @@ class MyApp extends ConsumerWidget {
         '/': (context) => const HomeScreen(),
         '/ask_ai': (context) => const AskAIScreen(), // TODO: Import AskAIScreen
         '/crop_guide': (context) => const CropGuideScreen(), // TODO: Import CropGuideScreen
-        '/pest_photo_upload': (context) => const PestPhotoUploadScreen(), // TODO: Import PestPhotoUploadScreen
-        '/settings': (context) => const SettingsScreen(), // TODO: Import SettingsScreen
-        // TODO: Add routes for other screens (Market Intelligence, Weather Alerts, Learning Library, Community & Groups)
+        '/pest_photo_upload': (context) => const PestPhotoUploadScreen(),
+        '/settings': (context) => const SettingsScreen(),
+        '/market_intelligence': (context) => const MarketIntelligenceScreen(),
+        // TODO: Create WeatherAlertsScreen, LearningLibraryScreen, and CommunityGroupsScreen and add their routes
+        '/weather_alerts': (context) => const PlaceholderScreen(title: 'Weather Alerts'), // Placeholder
+        '/learning_library': (context) => const PlaceholderScreen(title: 'Learning Library'), // Placeholder
+        '/community_groups': (context) => const PlaceholderScreen(title: 'Community & Groups'), // Placeholder
       },
       initialRoute: '/', // Set the initial route
     );
